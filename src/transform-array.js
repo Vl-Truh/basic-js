@@ -17,8 +17,12 @@ module.exports = function transform(arr) {
     	mArr.splice(i, 1);
     }
     
-    else if (mArr[i] == '--discard-prev') {
+    else if ((mArr[i] == '--discard-prev') && i - 1 >= 0) {
     	mArr.splice(i - 1, 2);
+    }
+	  
+    else if ((mArr[i] == '--discard-prev') && i - 1 < 0) {
+    	mArr.splice(i, 1);
     }
     
     else if ((mArr[i] == '--double-next') && i + 1 <= mArr.length - 1) {
@@ -29,8 +33,12 @@ module.exports = function transform(arr) {
     	mArr.splice(i, 1);
     }
 	  
-    else if (mArr[i] == '--double-prev') {
+    else if ((mArr[i] == '--double-prev') && i - 1 >= 0) {
     	mArr[i] = mArr[i - 1]
+    }
+	  
+    else if ((mArr[i] == '--double-prev') && i - 1 < 0) {
+        mArr.splice(i, 1);
     }
   }
   
